@@ -4,11 +4,14 @@ import { App } from 'components/App';
 import './index.css';
 import { ThemeProvider } from 'styled-components';
 import theme from 'theme/theme';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <App />
+      <BrowserRouter basename="/same-it-test">
+        <App />
+      </BrowserRouter>
     </ThemeProvider>
   </React.StrictMode>
 );
