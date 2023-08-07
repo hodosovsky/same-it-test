@@ -8,9 +8,9 @@ const Layout = () => {
       <header>
         <Nav>
           <NavigationLink to="/" end>
-            Home
+            Перевірити ТТН
           </NavigationLink>
-          <NavigationLink to="adresses">Addresses</NavigationLink>
+          <NavigationLink to="adresses">Список Відділень</NavigationLink>
         </Nav>
       </header>
       <main>

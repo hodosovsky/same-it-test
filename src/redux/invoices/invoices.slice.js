@@ -25,11 +25,14 @@ export const invoicesSlice = createSlice({
       .addCase(getInvoices.fulfilled, (state, action) => {
         console.log('payload', action.payload);
         console.log('state.invoices', state.invoices);
-        action.payload[0].Status !== 'Номер не найден'
-          ? state.invoices.includes(action.payload[0].Number)
-            ? (state.invoices = [...state.invoices])
-            : (state.invoices = [action.payload[0].Number, ...state.invoices])
-          : (state.invoices = [...state.invoices]);
+
+        if (action?.payload[0]?.Status === 'Номер не найден') {
+          state.invoices = [...state.invoices];
+        } else if (state?.invoices?.includes(action?.payload[0]?.Number)) {
+          state.invoices = [...state.invoices];
+        } else {
+          state.invoices = [action?.payload[0]?.Number, ...state.invoices];
+        }
 
         state.isLoading = false;
       })

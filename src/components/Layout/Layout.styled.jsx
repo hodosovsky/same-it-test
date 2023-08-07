@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import Box from 'components/Box/Box';
 
-export const Container = styled.div`
-  padding: ${p => p.theme.space[2]}px ${p => p.theme.space[3]}px;
+export const Container = styled(Box)`
+  padding: ${p => p.theme.space[2]}px ${p => p.theme.space[4]}px;
   background-color: ${p => p.theme.colors.bg};
 `;
 

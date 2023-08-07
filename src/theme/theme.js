@@ -8,6 +8,8 @@ const theme = {
     hoverText: '#F7DC6F',
     btnBg: '#FEF9E7',
     btnHover: '#32EFDB',
+    error: '#ff2b77',
+    disabled: '#323235',
   },
 
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 72],
