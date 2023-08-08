@@ -29,6 +29,7 @@ const SearchForm = ({ schema, placeholderMsg, onChangeActions }) => {
   }, [search]);
 
   const handleChange = e => {
+    e.preventDefault();
     if (onChangeActions) {
       debounce(() => {
         setSearchParams(

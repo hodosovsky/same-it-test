@@ -2,13 +2,17 @@ import { Field, Form } from 'formik';
 import styled from 'styled-components';
 
 export const StyledForm = styled(Form)`
-  position: relative;
   display: grid;
-  grid-template-columns: auto auto;
-  column-gap: 30px;
+  grid-template-columns: auto;
   justify-content: center;
-  padding: ${p => p.theme.space[3]}px ${p => p.theme.space[3]}px;
-  height: 80px;
+  margin-bottom: ${p => p.theme.space[5]}px;
+  gap: ${p => p.theme.space[4]}px;
+  max-width: 300px;
+  width: 100%;
+
+  @media screen and (min-width: 480px) {
+    grid-template-columns: auto auto;
+  }
 `;
 
 export const StyledLabel = styled.label`
@@ -16,16 +20,18 @@ export const StyledLabel = styled.label`
 `;
 
 export const StyledField = styled(Field)`
-  padding: ${p => p.theme.space[1]}px;
-
-  width: 250px;
-  margin-right: ${p => p.theme.space[1]}px;
+  max-width: 240px;
+  width: 100%;
   padding: ${p => p.theme.space[2]}px ${p => p.theme.space[3]}px;
   border-radius: ${p => p.theme.radii.med};
   border-color: ${p => p.theme.colors.border};
   outline: none;
   background-color: ${p => p.theme.colors.btnBg};
   font-size: ${p => p.theme.fontSizes[3]}px;
+
+  @media screen and (min-width: 480px) {
+    width: 300px;
+  }
 
   :placeholder {
     font-size: ${p => p.theme.fontSizes[2]}px;
@@ -57,6 +63,7 @@ export const FindBtn = styled.button`
   svg {
     transition: color 300ms ease-in-out;
     color: ${p => p.theme.colors.textP};
+    transition: color 250ms linear;
   }
 
   &:not(:disabled):hover,

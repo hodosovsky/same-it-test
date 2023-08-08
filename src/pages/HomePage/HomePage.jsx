@@ -1,5 +1,5 @@
 import SideBar from 'components/SideBar/SideBar';
-import { StyledConatiner } from './HomePage.styled';
+import { StyledConatiner, StyledFormContainer } from './HomePage.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { object, string } from 'yup';
@@ -8,7 +8,7 @@ import SearchForm from 'components/SearchForm/SearchForm';
 import { useSearchParams } from 'react-router-dom';
 import { selectInvoice, selectIsLoading } from 'redux/selectors';
 import Box from 'components/Box/Box';
-import Spinner from 'components/Spinner/Spinner';
+
 import InvoiceCard from 'components/InvoiceCard/InvoiceCard';
 
 const schema = object({
@@ -40,14 +40,15 @@ const HomePage = () => {
   return (
     <StyledConatiner>
       <Box>
-        <SearchForm
-          schema={schema}
-          placeholderMsg={placeholderMsg}
-          onChangeActions={onChangeActions}
-        />
+        <StyledFormContainer>
+          <SearchForm
+            schema={schema}
+            placeholderMsg={placeholderMsg}
+            onChangeActions={onChangeActions}
+          />
+        </StyledFormContainer>
 
-        {invoice && <InvoiceCard invoice={invoice} />}
-        {isLoading && <Spinner />}
+        {invoice?.Status && !isLoading && <InvoiceCard invoice={invoice} />}
       </Box>
       <SideBar />
     </StyledConatiner>

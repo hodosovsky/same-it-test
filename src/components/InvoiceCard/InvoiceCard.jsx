@@ -7,13 +7,13 @@ import {
   SubTitle,
   Text,
   City,
+  InfoWrap,
 } from './InvoiceCard.styled';
 import { useSelector } from 'react-redux';
 import { selectIsError, selectIsLoading } from 'redux/selectors';
 import Spinner from 'components/Spinner/Spinner';
 
 const InvoiceCard = ({ invoice }) => {
-  console.log('invoice:', invoice);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectIsError);
   const {
@@ -27,40 +27,52 @@ const InvoiceCard = ({ invoice }) => {
     WarehouseRecipient: warehouseRecipient,
   } = invoice;
   return (
-    <Box display="flex" justifyContent="center">
+    <>
       {!isLoading & !error && (
-        <Wrap>
-          <Box display="flex">
-            {status !== 'Номер не найден' ? (
-              <TextWrap>
-                <Title>Інформація по ТТН: {number}</Title>
-                <SubTitle>Статус доставки: {status}</SubTitle>
-                <SubTitle>ВІдправлено: {dateCreated}</SubTitle>
+        <Box>
+          <Wrap>
+            <Box display="flex">
+              {status !== 'Номер не найден' ? (
+                <TextWrap>
+                  <InfoWrap>
+                    <Title>Інформація по ТТН: </Title>
+                    <Text>{number}</Text>
+                  </InfoWrap>
+                  <InfoWrap>
+                    <SubTitle>Статус доставки:</SubTitle>
+                    <Text> {status}</Text>
+                  </InfoWrap>
+                  <InfoWrap>
+                    <SubTitle>ВІдправлено: </SubTitle>
+                    <Text>{dateCreated}</Text>
+                  </InfoWrap>
 
-                <Box display="flex" flexWrap="wrap" alignItems="center">
-                  <City>з {citySender}</City>
-                  <Text>{wareHouseSender}</Text>
-                </Box>
+                  <InfoWrap>
+                    <City>з {citySender}</City>
+                    <Text>{wareHouseSender}</Text>
+                  </InfoWrap>
 
-                <SubTitle>Отримано: {recipientDateTime}</SubTitle>
+                  <SubTitle>Отримано: {recipientDateTime}</SubTitle>
 
-                <Box display="flex" flexWrap="wrap" alignItems="center">
-                  <City>в {cityRecipient}</City>
-                  <Text>{warehouseRecipient}</Text>
-                </Box>
-              </TextWrap>
-            ) : (
-              <TextWrap>
-                <Title>Інформація по ТТН: {number}</Title>
-                <SubTitle>{status}</SubTitle>
-              </TextWrap>
-            )}
-          </Box>
-        </Wrap>
+                  <InfoWrap>
+                    <City>в {cityRecipient}</City>
+                    <Text>{warehouseRecipient}</Text>
+                  </InfoWrap>
+                </TextWrap>
+              ) : (
+                <TextWrap>
+                  <Title>Інформація по ТТН: {number}</Title>
+                  <SubTitle>{status}</SubTitle>
+                </TextWrap>
+              )}
+            </Box>
+          </Wrap>
+
+          {isLoading && <Spinner />}
+          {error && <h1> {error}</h1>}
+        </Box>
       )}
-      {isLoading && <Spinner />}
-      {error && <h1> {error}</h1>}
-    </Box>
+    </>
   );
 };
 

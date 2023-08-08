@@ -10,6 +10,7 @@ const theme = {
     btnHover: '#32EFDB',
     error: '#ff2b77',
     disabled: '#323235',
+    white: '#ffffff',
   },
 
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 72],
@@ -31,7 +32,7 @@ const theme = {
   borders: {
     none: 'none',
     primary: '1px solid',
-    secondary: '3px solid',
+    secondary: '2px solid',
   },
   radii: {
     min: '4px',

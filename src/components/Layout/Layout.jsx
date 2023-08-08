@@ -10,7 +10,7 @@ const Layout = () => {
           <NavigationLink to="/" end>
             Перевірити ТТН
           </NavigationLink>
-          <NavigationLink to="adresses">Список Відділень</NavigationLink>
+          <NavigationLink to="adresses">Адреси Відділень</NavigationLink>
         </Nav>
       </header>
       <main>
