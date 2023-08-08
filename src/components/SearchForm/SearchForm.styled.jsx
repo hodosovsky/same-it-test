@@ -18,7 +18,7 @@ export const StyledLabel = styled.label`
 export const StyledField = styled(Field)`
   padding: ${p => p.theme.space[1]}px;
 
-  width: 400px;
+  width: 250px;
   margin-right: ${p => p.theme.space[1]}px;
   padding: ${p => p.theme.space[2]}px ${p => p.theme.space[3]}px;
   border-radius: ${p => p.theme.radii.med};

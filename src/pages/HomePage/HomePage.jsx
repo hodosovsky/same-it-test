@@ -1,10 +1,15 @@
 import SideBar from 'components/SideBar/SideBar';
 import { StyledConatiner } from './HomePage.styled';
-import { useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { object, string } from 'yup';
 import { getInvoices } from 'redux/invoices/operations';
 import SearchForm from 'components/SearchForm/SearchForm';
+import { useSearchParams } from 'react-router-dom';
+import { selectInvoice, selectIsLoading } from 'redux/selectors';
+import Box from 'components/Box/Box';
+import Spinner from 'components/Spinner/Spinner';
+import InvoiceCard from 'components/InvoiceCard/InvoiceCard';
 
 const schema = object({
   query: string('Please enter Number')
@@ -14,26 +19,36 @@ const schema = object({
     .required('Number is required'),
 });
 
-const placeholderMsg = 'Enter the declaration number';
+const placeholderMsg = 'Введіть номер ТТН';
+const onChangeActions = false;
 
 const HomePage = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchParams] = useSearchParams();
+  const isLoading = useSelector(selectIsLoading);
+  const invoice = useSelector(selectInvoice);
+
+  const search = searchParams.get('search' ?? '');
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (searchQuery !== '') {
-      dispatch(getInvoices(searchQuery));
+    if (search) {
+      dispatch(getInvoices(search));
     }
-  }, [dispatch, searchQuery]);
+  }, [dispatch, search]);
 
   return (
     <StyledConatiner>
-      <SearchForm
-        schema={schema}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        placeholderMsg={placeholderMsg}
-      />
+      <Box>
+        <SearchForm
+          schema={schema}
+          placeholderMsg={placeholderMsg}
+          onChangeActions={onChangeActions}
+        />
+
+        {invoice && <InvoiceCard invoice={invoice} />}
+        {isLoading && <Spinner />}
+      </Box>
       <SideBar />
     </StyledConatiner>
   );

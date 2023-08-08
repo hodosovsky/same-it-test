@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getInvoices } from './operations';
 
 const initialState = {
-  invoices: [],
+  invoicesNumberList: [],
+  invoice: {},
   isLoading: false,
   error: null,
 };
@@ -17,23 +18,25 @@ const handleRejected = (state, action) => {
 };
 
 export const invoicesSlice = createSlice({
-  name: 'invoices',
+  name: 'invoicesNumberList',
   initialState,
   extraReducers: builder => {
     builder
       .addCase(getInvoices.pending, handlePending)
       .addCase(getInvoices.fulfilled, (state, action) => {
-        console.log('payload', action.payload);
-        console.log('state.invoices', state.invoices);
-
         if (action?.payload[0]?.Status === 'Номер не найден') {
-          state.invoices = [...state.invoices];
-        } else if (state?.invoices?.includes(action?.payload[0]?.Number)) {
-          state.invoices = [...state.invoices];
+          state.invoicesNumberList = [...state.invoicesNumberList];
+        } else if (
+          state?.invoicesNumberList?.includes(action?.payload[0]?.Number)
+        ) {
+          state.invoicesNumberList = [...state.invoicesNumberList];
         } else {
-          state.invoices = [action?.payload[0]?.Number, ...state.invoices];
+          state.invoicesNumberList = [
+            action?.payload[0]?.Number,
+            ...state.invoicesNumberList,
+          ];
         }
-
+        state.invoice = action?.payload[0];
         state.isLoading = false;
       })
       .addCase(getInvoices.rejected, handleRejected);

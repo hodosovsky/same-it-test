@@ -15,7 +15,7 @@ import persistReducer from 'redux-persist/es/persistReducer';
 const invoicesPersistConfig = {
   key: 'invoices',
   storage,
-  whitelist: ['invoices'],
+  whitelist: ['invoicesNumberList'],
 };
 
 export const store = configureStore({

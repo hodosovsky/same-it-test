@@ -8,24 +8,41 @@ import {
   StyledForm,
   StyledLabel,
 } from './SearchForm.styled';
+import { useEffect } from 'react';
+import useDebounce from 'react-debounced';
 
-const SearchForm = ({
-  schema,
-  searchQuery,
-  setSearchQuery,
-  placeholderMsg,
-}) => {
-  const [, setSearchParams] = useSearchParams();
+const initialValues = {
+  query: '',
+};
 
-  const initialValues = {
-    query: '',
+const SearchForm = ({ schema, placeholderMsg, onChangeActions }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const debounce = useDebounce(500);
+
+  const search = searchParams.get('search' ?? '');
+
+  useEffect(() => {
+    if (search === '') {
+      return;
+    }
+  }, [search]);
+
+  const handleChange = e => {
+    if (onChangeActions) {
+      debounce(() => {
+        setSearchParams(
+          e.target.value.toLowerCase().trim() !== ''
+            ? { search: e.target.value.toLowerCase().trim() }
+            : {}
+        );
+      });
+    }
   };
 
   const handleSubmit = async ({ query }, { resetForm }) => {
     setSearchParams(query !== '' ? { search: query } : {});
-    if (query !== '') {
-      setSearchQuery(query);
-    }
+    resetForm();
   };
 
   return (
@@ -35,7 +52,7 @@ const SearchForm = ({
       validationSchema={schema}
     >
       {({ isValid }) => (
-        <StyledForm autoComplete="off">
+        <StyledForm autoComplete="off" onChange={handleChange}>
           <StyledLabel>
             <StyledField
               type="text"

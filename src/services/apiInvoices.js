@@ -12,7 +12,6 @@ export const getInvoiceAPI = async number => {
       Documents: [
         {
           DocumentNumber: number,
-          Phone: '380600000000',
         },
       ],
     },
