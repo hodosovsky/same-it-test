@@ -38,7 +38,7 @@ const HomePage = () => {
   }, [dispatch, search]);
 
   return (
-    <StyledConatiner>
+    <StyledConatiner as="section">
       <Box>
         <StyledFormContainer>
           <SearchForm

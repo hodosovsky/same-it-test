@@ -19,3 +19,35 @@ export const getInvoiceAPI = async number => {
 
   return data;
 };
+
+export const getCitiesAPI = async city => {
+  const { data } = await axios.post(`/`, {
+    apiKey: API_KEY,
+    modelName: 'Address',
+    calledMethod: 'getCities',
+    methodProperties: {
+      Ref: '',
+      Page: '1',
+      FindByString: city,
+      Limit: '20',
+    },
+  });
+
+  return data;
+};
+
+export const getDepartmentsAPI = async (city, page = 2) => {
+  const { data } = await axios.post(`/`, {
+    apiKey: API_KEY,
+    modelName: 'Address',
+    calledMethod: 'getWarehouses',
+    methodProperties: {
+      CityRef: city,
+      Page: page,
+      Limit: '20',
+      Language: 'UA',
+    },
+  });
+
+  return data;
+};

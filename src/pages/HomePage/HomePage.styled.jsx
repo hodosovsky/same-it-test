@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledConatiner = styled.div`
-  padding: ${p => p.theme.space[4]}px;
+  margin-top: ${p => p.theme.space[4]}px;
 
   display: grid;
   grid-template-columns: auto;

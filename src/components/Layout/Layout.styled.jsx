@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import Box from 'components/Box/Box';
 
 export const Container = styled(Box)`
-  padding: ${p => p.theme.space[2]}px 0;
+  padding: ${p => p.theme.space[4]}px ${p => p.theme.space[4]}px;
   background-color: ${p => p.theme.colors.bg};
   width: 320px;
   margin: 0 auto;
@@ -26,7 +26,7 @@ export const Container = styled(Box)`
 export const Nav = styled.nav`
   border-bottom: ${p => p.theme.borders.primary};
   border-bottom-color: ${p => p.theme.colors.border};
-  padding: ${p => p.theme.space[2]}px;
+  padding-bottom: ${p => p.theme.space[2]}px;
   display: flex;
   align-items: center;
   flex-direction: column;
