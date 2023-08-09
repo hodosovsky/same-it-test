@@ -6,6 +6,8 @@ import {
   Text,
   DepartmentName,
   DepartmentList,
+  StyledButton,
+  ButtonWrap,
 } from './CitiesList.styled';
 import { useState } from 'react';
 import Box from 'components/Box/Box';
@@ -48,18 +50,20 @@ const CitiesList = ({ cities }) => {
                   ))}
               </DepartmentList>
               {city.Description === departments[0]?.CityDescription &&
-                departments.length === 20 && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      getDepartmentsAPI(city.Ref, page).then(({ data }) => {
-                        setDepartments(prev => [...prev, ...data]);
-                      });
-                      setPage(prev => prev + 1);
-                    }}
-                  >
-                    load more
-                  </button>
+                departments.length % 20 === 0 && (
+                  <ButtonWrap>
+                    <StyledButton
+                      type="button"
+                      onClick={() => {
+                        getDepartmentsAPI(city.Ref, page).then(({ data }) => {
+                          setDepartments(prev => [...prev, ...data]);
+                        });
+                        setPage(prev => prev + 1);
+                      }}
+                    >
+                      load more
+                    </StyledButton>
+                  </ButtonWrap>
                 )}
             </Box>
           )}

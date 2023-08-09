@@ -36,3 +36,30 @@ export const Text = styled.p`
 export const DepartmentName = styled.p`
   font-size: ${p => p.theme.fontSizes[2]}px;
 `;
+
+export const StyledButton = styled.button`
+  display: block;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  color: ${p => p.theme.colors.disabled};
+  transition: color 250ms linear;
+  border: ${p => p.theme.borders.primary} ${p => p.theme.colors.textP};
+  border-radius: ${p => p.theme.radii.med};
+  padding: ${p => p.theme.fontSizes[1]}px;
+  margin-bottom: ${p => p.theme.fontSizes[2]}px;
+
+  &:hover,
+  &:focus {
+    color: ${p => p.theme.colors.textP};
+    background-color: ${p => p.theme.colors.hover};
+  }
+`;
+
+export const ButtonWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

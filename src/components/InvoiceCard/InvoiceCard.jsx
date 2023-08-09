@@ -12,6 +12,7 @@ import {
 import { useSelector } from 'react-redux';
 import { selectIsError, selectIsLoading } from 'redux/selectors';
 import Spinner from 'components/Spinner/Spinner';
+import translateUa from 'helpers/translateUa';
 
 const InvoiceCard = ({ invoice }) => {
   const isLoading = useSelector(selectIsLoading);
@@ -52,7 +53,10 @@ const InvoiceCard = ({ invoice }) => {
                     <Text>{wareHouseSender}</Text>
                   </InfoWrap>
 
-                  <SubTitle>Отримано: {recipientDateTime}</SubTitle>
+                  <InfoWrap>
+                    <SubTitle>Отримано: </SubTitle>
+                    <Text>{recipientDateTime}</Text>
+                  </InfoWrap>
 
                   <InfoWrap>
                     <City>в {cityRecipient}</City>
@@ -62,7 +66,7 @@ const InvoiceCard = ({ invoice }) => {
               ) : (
                 <TextWrap>
                   <Title>Інформація по ТТН: {number}</Title>
-                  <SubTitle>{status}</SubTitle>
+                  <SubTitle>{translateUa(status)}</SubTitle>
                 </TextWrap>
               )}
             </Box>
