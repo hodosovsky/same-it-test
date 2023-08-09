@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 
 export const StyledList = styled.li`
-  display: flex;
-  justify-content: center;
-  gap: ${p => p.theme.fontSizes[4]}px;
   margin-bottom: ${p => p.theme.space[4]}px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${p => p.theme.fontSizes[4]}px;
+
+  @media screen and (min-width: 480px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
 `;
 
 export const NumberWrap = styled.div`
@@ -28,6 +35,7 @@ export const StyledButton = styled.button`
   cursor: pointer;
   outline: none;
   transition: border-color 250ms linear;
+  align-self: flex-end;
 
   &:hover,
   &:focus {
