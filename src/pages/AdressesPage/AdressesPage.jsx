@@ -1,4 +1,3 @@
-import Box from 'components/Box/Box';
 import {
   StyledConatiner,
   StyledFormContainer,
@@ -21,12 +20,11 @@ const schema = object({
 
 const AdressesPage = () => {
   const [cities, setCities] = useState(false);
-  const [departments, setDepartments] = useState(false);
-  console.log('departments:', departments);
 
   const [searchParams] = useSearchParams();
 
   const search = searchParams.get('search' ?? '');
+  console.log('search:', search);
 
   useEffect(() => {
     if (search) {
@@ -46,18 +44,11 @@ const AdressesPage = () => {
         </StyledFormContainer>
 
         <StyledInfoContainer>
-          <Box>
-            <Title>Список знайдених міст:</Title>
-            {cities && (
-              <CitiesList
-                cities={cities}
-                departments={departments}
-                setDepartments={setDepartments}
-              />
-            )}
-            {!cities && <Title>за Вашим запитом нічого не знайдено</Title>}
-          </Box>
-          <Box>sgfsgfsdgdf</Box>
+          <Title>Список знайдених міст:</Title>
+          {cities && <CitiesList cities={cities} />}
+          {cities.length === 0 && (
+            <Title>За Вашим запитом нічого не знайдено</Title>
+          )}
         </StyledInfoContainer>
       </StyledConatiner>
     </>

@@ -36,7 +36,7 @@ export const getCitiesAPI = async city => {
   return data;
 };
 
-export const getDepartmentsAPI = async (city, page = 2) => {
+export const getDepartmentsAPI = async (city, page = 1) => {
   const { data } = await axios.post(`/`, {
     apiKey: API_KEY,
     modelName: 'Address',

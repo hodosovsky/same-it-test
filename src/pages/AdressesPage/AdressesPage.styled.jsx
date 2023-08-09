@@ -14,10 +14,6 @@ export const StyledInfoContainer = styled.div`
   grid-template-columns: auto;
   width: 100%;
   height: 100%;
-
-  @media screen and (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
-  }
 `;
 
 export const Title = styled.h1`
