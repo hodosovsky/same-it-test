@@ -13,11 +13,8 @@ import { useState } from 'react';
 import Box from 'components/Box/Box';
 
 const CitiesList = ({ cities }) => {
-  console.log('cities:', cities);
   const [departments, setDepartments] = useState(false);
   const [page, setPage] = useState(1);
-
-  console.log('departments:', departments);
 
   return (
     <Wrap>

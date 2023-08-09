@@ -64,11 +64,9 @@ const SearchForm = ({ schema, placeholderMsg, onChangeActions }) => {
             <FormError name="query" />
           </StyledLabel>
 
-          {!onChangeActions && (
-            <FindBtn type="submit" disabled={!isValid}>
-              <HiOutlineSearchCircle size={40} />
-            </FindBtn>
-          )}
+          <FindBtn type="submit" disabled={!isValid}>
+            <HiOutlineSearchCircle size={40} />
+          </FindBtn>
         </StyledForm>
       )}
     </Formik>

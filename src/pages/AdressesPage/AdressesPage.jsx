@@ -24,7 +24,6 @@ const AdressesPage = () => {
   const [searchParams] = useSearchParams();
 
   const search = searchParams.get('search' ?? '');
-  console.log('search:', search);
 
   useEffect(() => {
     if (search) {
