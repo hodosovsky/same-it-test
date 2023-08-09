@@ -37,14 +37,6 @@ export const StyledField = styled(Field)`
     font-size: ${p => p.theme.fontSizes[2]}px;
     color: ${p => p.theme.colors.textP};
   }
-
-  /* &:not(:focus):not(:placeholder-shown):valid {
-    border-color: ${p => p.theme.colors.hover};
-  }
-
-  &:not(:focus):not(:placeholder-shown):invalid {
-    border-color: ${p => p.theme.colors.error};
-  } */
 `;
 
 export const FindBtn = styled.button`

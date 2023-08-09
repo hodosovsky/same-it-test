@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { getDepartmentsAPI } from 'services/apiInvoices';
 import {
   InfoWrap,
@@ -69,5 +70,7 @@ const CitiesList = ({ cities }) => {
     </Wrap>
   );
 };
-
+CitiesList.propTypes = {
+  cities: PropTypes.array,
+};
 export default CitiesList;

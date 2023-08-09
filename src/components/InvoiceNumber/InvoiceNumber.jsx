@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import {
   StyledButton,
@@ -29,6 +30,10 @@ const InvoiceNumber = ({ number }) => {
       <StyledButton onClick={handleDelete}>Видалити</StyledButton>
     </StyledList>
   );
+};
+
+InvoiceNumber.propTypes = {
+  number: PropTypes.string.isRequired,
 };
 
 export default InvoiceNumber;

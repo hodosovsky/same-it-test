@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Box from 'components/Box/Box';
 import InvoiceNumber from 'components/InvoiceNumber/InvoiceNumber';
 import {
@@ -10,9 +11,11 @@ import { deleteAllNumbersAction } from 'redux/invoices/invoices.slice';
 
 const InvoiceNumbersList = ({ list }) => {
   const dispatch = useDispatch(deleteAllNumbersAction);
+
   const handleDeleteAll = () => {
     dispatch(deleteAllNumbersAction());
   };
+
   return (
     <Box>
       <Title>Історія пошукових запитів:</Title>
@@ -28,6 +31,10 @@ const InvoiceNumbersList = ({ list }) => {
       )}
     </Box>
   );
+};
+
+InvoiceNumbersList.propTypes = {
+  list: PropTypes.array.isRequired,
 };
 
 export default InvoiceNumbersList;

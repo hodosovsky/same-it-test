@@ -1,4 +1,5 @@
-import { Formik } from 'formik';
+import PropTypes from 'prop-types';
+import { Formik, Field } from 'formik';
 import { HiOutlineSearchCircle } from 'react-icons/hi';
 import { useSearchParams } from 'react-router-dom/dist';
 import { FormError } from 'components/FormError/FormError';
@@ -13,6 +14,10 @@ import useDebounce from 'react-debounced';
 
 const initialValues = {
   query: '',
+};
+
+const styleError = {
+  border: '1px solid #ff2b77',
 };
 
 const SearchForm = ({ schema, placeholderMsg, onChangeActions }) => {
@@ -52,14 +57,19 @@ const SearchForm = ({ schema, placeholderMsg, onChangeActions }) => {
       onSubmit={handleSubmit}
       validationSchema={schema}
     >
-      {({ isValid }) => (
+      {({ isValid, values, error, touched }) => (
         <StyledForm autoComplete="off" onChange={handleChange}>
           <StyledLabel>
-            <StyledField
-              type="text"
-              name="query"
-              placeholder={placeholderMsg}
-            />
+            <Field name="query">
+              {({ field, form }) => (
+                <StyledField
+                  style={form.touched.query && form.errors.query && styleError}
+                  {...field}
+                  type="text"
+                  placeholder={placeholderMsg}
+                />
+              )}
+            </Field>
 
             <FormError name="query" />
           </StyledLabel>
@@ -71,6 +81,14 @@ const SearchForm = ({ schema, placeholderMsg, onChangeActions }) => {
       )}
     </Formik>
   );
+};
+
+SearchForm.propTypes = {
+  schema: PropTypes.shape({
+    query: PropTypes.object,
+  }),
+  placeholderMsg: PropTypes.string.isRequired,
+  onChangeActions: PropTypes.bool.isRequired,
 };
 
 export default SearchForm;
